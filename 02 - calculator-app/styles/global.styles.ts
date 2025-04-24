@@ -10,7 +10,6 @@ export const globalStyles = StyleSheet.create({
     calculatorContainer: {
         flex: 1,
         justifyContent: 'flex-end',
-        alignItems: 'center',
         paddingBottom: 20,
     },
     miniResult:{
@@ -24,6 +23,26 @@ export const globalStyles = StyleSheet.create({
         color: Colors.textSecondary,
         textAlign: 'right',
         fontWeight: '300',
+    },
+    row:{
+        flexDirection: 'row',
+        justifyContent: "center",
+        marginBottom: 18,
+        paddingHorizontal: 10,
+    },
+    buttonCalculator:{
+        height:80,
+        width:80,
+        backgroundColor:Colors.darkGray,
+        borderRadius:100,
+        justifyContent:"center",
+        marginHorizontal:10,
+        alignItems:"center",
+    },
+    buttonCalculatorText:{
+        
+        fontSize:30,
+        fontWeight:"300",
     }
 });
 
