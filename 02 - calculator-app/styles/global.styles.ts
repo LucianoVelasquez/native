@@ -4,6 +4,10 @@ import { StyleSheet } from "react-native";
 
 export const globalStyles = StyleSheet.create({
     backgroundColor: {
+    // La propiedad flex: 1 en React Native es una propiedad de estilo que indica que el componente debe ocupar todo el 
+    // espacio disponible en su contenedor padre.
+    // En este caso, al aplicarlo al View principal, hace que este ocupe todo el espacio disponible en la pantalla.
+    // Esto es especialmente útil para crear layouts que se adapten a diferentes tamaños de pantalla.
     flex: 1,
     backgroundColor: Colors.background,
     },
@@ -31,8 +35,8 @@ export const globalStyles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     buttonCalculator:{
-        height:80,
-        width:80,
+        height:75,
+        width:75,
         backgroundColor:Colors.darkGray,
         borderRadius:100,
         justifyContent:"center",

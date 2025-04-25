@@ -2,17 +2,36 @@ import { Colors } from '@/constants/Colors';
 import { globalStyles } from '@/styles/global.styles';
 import React from 'react';
 import { Pressable, PressableProps, Text } from 'react-native';
+import * as Haptics from 'expo-haptics';
 
-interface CalculatorButtonProps extends PressableProps {
+export interface CalculatorButtonProps extends PressableProps {
     label: string;
     color?: string;
     blackText?: boolean;
+    doubleSize?: boolean;
+    total?: boolean;
 }
 
-const CalculatorButton = ({ label, color, blackText, ...props}: CalculatorButtonProps) => {
+const CalculatorButton = ({ label, color, blackText = false, doubleSize = false, total = false, ...props }: CalculatorButtonProps) => {
     return (
-        <Pressable style={globalStyles.buttonCalculator} {...props}>
-            <Text style={[globalStyles.buttonCalculatorText, {color: blackText ? Colors.darkGray : "white"}]}>{label}</Text>
+        <Pressable style={({ pressed }) =>
+            [globalStyles.buttonCalculator,
+            {
+                backgroundColor: color,
+                opacity: pressed ? 0.8 : 1,
+                width: doubleSize ? 170 : 75,
+            }]}
+            {...props}
+            onPress={
+                () => total ? Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success) : Haptics.selectionAsync()
+              }
+        >
+            <Text style={[
+                globalStyles.buttonCalculatorText,
+                { color: blackText ? "black" : "white" }
+            ]}>
+                {label}
+            </Text>
         </Pressable>
     )
 };
