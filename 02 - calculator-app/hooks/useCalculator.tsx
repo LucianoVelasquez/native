@@ -25,8 +25,75 @@ export const useCalculator = () => {
   const [previousNumber, setPreviousNumber] = useState<string>('0');
 
   useEffect(() => {
-    setFormula(numberView);
+    
+    if(lastOperation.current){
+      const firstPartFormula = formula.split(" ").at(0)
+      setFormula(`${firstPartFormula} ${lastOperation.current} ${numberView}`);
+    }else{
+      setFormula(numberView);
+    }
+
   }, [numberView]);
+
+
+  useEffect(() => {
+    const subResult = calculate();
+    setPreviousNumber(subResult.toString());
+  }, [formula]);
+
+  
+  const calculate = () =>{
+    const [firstNumber, operator, secondNumber] = formula.split(" ");
+    
+    const firstNumberParsed = Number(firstNumber);
+    const secondNumberParsed = Number(secondNumber);
+
+    if(isNaN(secondNumberParsed)) return firstNumberParsed;
+
+    switch(operator){
+      case Operator.add:
+        return firstNumberParsed + secondNumberParsed;
+      case Operator.substract:
+        return firstNumberParsed - secondNumberParsed;
+      case Operator.multiply:
+        return firstNumberParsed * secondNumberParsed;
+      case Operator.divide:
+        return firstNumberParsed / secondNumberParsed;
+      default:
+        throw new Error(`Invalid operator: ${operator}`);
+    }
+  }
+
+  const setLasNumber = () =>{
+    caclulateResult();
+
+    if(numberView.endsWith(".")){
+      setPreviousNumber(numberView.slice(0,-1));
+    }
+
+    setPreviousNumber(numberView);
+    setNumber('0');
+  }
+
+  const divideOperator = () =>{
+    setLasNumber();
+    lastOperation.current = Operator.divide;
+  }
+
+  const multiplyOperator = () =>{
+    setLasNumber();
+    lastOperation.current = Operator.multiply;
+  }
+
+  const substractOperator = () =>{
+    setLasNumber();
+    lastOperation.current = Operator.substract;
+  }
+
+  const addOperator = () =>{
+    setLasNumber();
+    lastOperation.current = Operator.add;
+  }
 
   const cleanNumber = () =>{
     setNumber('0');
@@ -37,9 +104,11 @@ export const useCalculator = () => {
 
   const deleteLastNumber = () =>{ 
     if(numberView.length ===  1) return setNumber("0");
+    if(numberView.includes("-0")) return;
     return setNumber(numberView.slice(0,-1));
   }
 
+  
   const toogleSign = () =>{
     if(numberView.includes("-")){
       return setNumber(numberView.slice(1));
@@ -50,8 +119,6 @@ export const useCalculator = () => {
 
   const buildNumber = (inputNumber: string) =>{
 
-    
-
     //Verificar si el numero ya tiene un punto
     if(numberView.includes(".") && inputNumber === ".") return;
 
@@ -59,11 +126,6 @@ export const useCalculator = () => {
     // Verifica si el número actual comienza con 0 o -0
     if(numberView.startsWith('0') || numberView.startsWith('-0')){
 
-      if(inputNumber === "+/-"){
-        toogleSign();
-        return;
-      }
-      
       // Si se presiona el punto decimal, lo agrega al número actual
       if(inputNumber === "."){
         return setNumber(numberView + inputNumber);
@@ -85,26 +147,15 @@ export const useCalculator = () => {
 
     }
 
-    //Eliminar el ultimo numero
-    if(inputNumber === "Del"){
-      deleteLastNumber();
-      return;
-    }
-
-    //Limpiar todos los numeros
-    if(inputNumber === "C"){
-      cleanNumber();
-      return;
-    }
-
-    //Cambiar el signo del numero
-    if(inputNumber === "+/-"){
-      toogleSign();
-      return;
-    }
-    
     setNumber(numberView + inputNumber);
     
+  }
+
+  const caclulateResult = () =>{
+    const result = calculate();
+    setFormula(result.toString());
+    setPreviousNumber('0');
+    lastOperation.current = undefined;
   }
 
   return{
@@ -115,6 +166,15 @@ export const useCalculator = () => {
 
     //Metodos
     buildNumber,
+    cleanNumber,
+    deleteLastNumber,
+    toogleSign,
+    divideOperator,
+    multiplyOperator,
+    substractOperator,
+    addOperator,
+    calculate,
+    caclulateResult,
 
   }
 };

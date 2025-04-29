@@ -11,11 +11,21 @@ export interface CalculatorButtonProps extends PressableProps {
     doubleSize?: boolean;
     total?: boolean;
     buildNumber?: (numberText: string) => void;
+    cleanNumber?: () => void;
+    deleteLastNumber?: () => void;
+    toogleSign?: () => void;
+    divideOperator?: () => void;
+    multiplyOperator?: () => void;
+    substractOperator?: () => void;
+    addOperator?: () => void;
+    calculate?: () => void;
+    caclulateResult?: () => void;
 }
 
-const CalculatorButton = ({ label, color, blackText = false, doubleSize = false, total = false, buildNumber, ...props }: CalculatorButtonProps) => {
+const CalculatorButton = ({ label, color, blackText = false, doubleSize = false, total = false, buildNumber, cleanNumber, deleteLastNumber, toogleSign, divideOperator,
+                            multiplyOperator, substractOperator, addOperator, calculate, caclulateResult, ...props }: CalculatorButtonProps) => {
 
-    
+
 
     return (
         <Pressable style={({ pressed }) =>
@@ -29,9 +39,18 @@ const CalculatorButton = ({ label, color, blackText = false, doubleSize = false,
             onPress={
                 () => {
                     buildNumber?.(label);
+                    cleanNumber?.();
+                    deleteLastNumber?.();
+                    toogleSign?.();
+                    divideOperator?.();
+                    multiplyOperator?.();
+                    substractOperator?.();
+                    addOperator?.();
+                    calculate?.();
+                    caclulateResult?.();
                     total ? Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success) : Haptics.selectionAsync()
                 }
-              }
+            }
         >
             <Text style={[
                 globalStyles.buttonCalculatorText,
