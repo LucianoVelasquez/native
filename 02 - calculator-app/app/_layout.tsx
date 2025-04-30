@@ -6,8 +6,16 @@ import { useFonts } from 'expo-font';
 
 import { globalStyles } from '@/styles/global.styles';
 
+/**
+ * Componente de diseño raíz de la aplicación.
+ * Configura el fondo, carga las fuentes personalizadas y define la estructura básica
+ * que envuelve a todas las pantallas de la aplicación utilizando el componente Slot de Expo Router.
+ * También configura la barra de estado.
+ *
+ * @returns {React.ReactElement | null} El elemento de diseño raíz o null si las fuentes no se han cargado.
+ */
 export default function RootLayout() {
-  
+
   const [fontsLoaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   })

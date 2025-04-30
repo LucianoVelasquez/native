@@ -6,7 +6,13 @@ import { StatusBar } from 'expo-status-bar';
 import CalculatorButton, { CalculatorButtonProps } from '@/components/CalculatorButton';
 import { useCalculator } from '@/hooks/useCalculator';
 
-
+/**
+ * Componente principal de la pantalla de la calculadora.
+ * Muestra la interfaz de usuario, incluyendo la pantalla de resultados y los botones.
+ * Utiliza el hook `useCalculator` para manejar la lógica y el estado de la calculadora.
+ *
+ * @returns {React.ReactElement} El elemento de la pantalla de la calculadora.
+ */
 export default function Calculator() {
 
   const { buildNumber,
@@ -19,7 +25,6 @@ export default function Calculator() {
     multiplyOperator,
     substractOperator,
     addOperator,
-    calculate,
     caclulateResult } = useCalculator();
 
   return (
@@ -85,7 +90,7 @@ export default function Calculator() {
 
         <CalculatorButton doubleSize color={Colors.darkGray} label='0' buildNumber={buildNumber} />
         <CalculatorButton color={Colors.darkGray} label='.' buildNumber={buildNumber} />
-        <CalculatorButton total color={Colors.orange} label='=' calculate={calculate} caclulateResult={caclulateResult} />
+        <CalculatorButton total color={Colors.orange} label='=' caclulateResult={caclulateResult} />
       </View >
 
     </View>
