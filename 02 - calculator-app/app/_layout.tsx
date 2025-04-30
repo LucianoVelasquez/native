@@ -16,10 +16,20 @@ import { globalStyles } from '@/styles/global.styles';
  */
 export default function RootLayout() {
 
+  /**
+   * Carga la fuente personalizada SpaceMono utilizando el hook useFonts de expo-font.
+   * El archivo de la fuente se carga desde el directorio assets/fonts.
+   * 
+   * @returns {[boolean]} Un array que contiene un booleano indicando si las fuentes están cargadas
+   */
   const [fontsLoaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   })
 
+  /**
+   * Retorno anticipado si las fuentes no han terminado de cargar para prevenir problemas de renderizado.
+   * Retorna null para no renderizar nada hasta que las fuentes estén listas.
+   */
   if (!fontsLoaded) {
     return null;
   }
