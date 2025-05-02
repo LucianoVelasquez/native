@@ -21,6 +21,9 @@ A lo largo de este viaje de aprendizaje, se construirán las siguientes aplicaci
 2.  **`02 - calculator-app`** 🧮:
     *   Una aplicación de calculadora funcional. Enfocada en practicar la maquetación de interfaces (UI), la gestión de lógica más compleja y el manejo de múltiples estados.
 
+3.  **`03 - navigation-app`** 🧭:
+    *   Una aplicación para explorar diferentes estrategias de navegación (Stack, Tabs, Drawer) utilizando React Navigation o Expo Router.
+
 *(¡Más proyectos por venir!)*
 
 ---
