@@ -1,16 +1,17 @@
-import { Link } from 'expo-router';
+import CustomButton from '@/components/shared/custombotton';
+import { Link, router } from 'expo-router';
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function ProductsScreen() {
+export default function HomeScreen() {
   return (
     <View style={styles.container}>
       {/* Puedes empezar a añadir tus componentes aquí */}
-      <Text className='text-secondary-default text-2xl font-bold'>Home</Text>
-      <Link className='text-secondary-default' href="/setting">Setting</Link>
-      <Link className='text-secondary-default' href="/products">Products</Link>
-      <Link className='text-secondary-default' href="/profile">Profile</Link>
-      
+      <CustomButton color='primary' onPress={() => router.push('/home')}>Home</CustomButton>
+      <CustomButton color='secondary' onPress={() => router.push('/profile')}>Profile</CustomButton>
+      <CustomButton color='secondary' onPress={() => router.push('/setting')}>Settings</CustomButton>
+      <CustomButton color='secondary' onPress={() => router.push('/products')}>Products</CustomButton>
+
     </View>
   );
 }
