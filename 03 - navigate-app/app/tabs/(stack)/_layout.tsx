@@ -12,7 +12,7 @@ const StackLayout = () => {
   // Este componente definirá la navegación de tipo Stack para las rutas
   // dentro del grupo (stack).
   return (
-    <Stack>
+    <Stack screenOptions={{}}>
       {/* Aquí puedes configurar las pantallas que pertenecerán a este Stack Navigator */}
       <Stack.Screen name="home/index" options={{ title: 'Home',headerTitleAlign: 'center', animation: 'ios_from_right'}} />
       <Stack.Screen name="profile/index" options={{ title: 'Profile',headerTitleAlign: 'center', animation: 'ios_from_right'}} />

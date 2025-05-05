@@ -5,7 +5,15 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default function TabsLayout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: 'blue' }}>
+    <Tabs screenOptions={{ tabBarActiveTintColor: 'blue',  headerShown: false  }}>
+      <Tabs.Screen
+        name="(stack)"
+        options={{
+          title: 'Stack',
+          tabBarIcon: ({ color }) => <Ionicons size={28} name="person-outline" color={color} />,
+          headerTitleAlign: 'center',
+        }}
+      />
       <Tabs.Screen
         name="home/index"
         options={{

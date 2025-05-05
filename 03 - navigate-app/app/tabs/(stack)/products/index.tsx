@@ -16,7 +16,7 @@ export default function ProductsScreen() {
             <View className='w-screen items-center rounded-md bg-primary p-3 mb-3'>
               <Text className='text-white text-lg font-bold'>{item.title}</Text>
               <Text className='text-white text-xl mt-2 font-bold'>$ {item.price}</Text>
-              <Link href={`/(stack)/products/${item.id}`} className='mt-2 bg-secondary-default p-2 rounded-md'>Mas informacion</Link>
+              <Link href={`/tabs/(stack)/products/${item.id}`} className='mt-2 bg-secondary-default p-2 rounded-md'>Mas informacion</Link>
             </View>
           )
         }}
