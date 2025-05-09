@@ -6,13 +6,28 @@
 // directamente como `/home` en lugar de `/stack/home`.
 
 import React from 'react';
-import { Stack } from 'expo-router';
+import { Stack, useNavigation } from 'expo-router';
+import { Text } from 'react-native';
+import { DrawerActions } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
 const StackLayout = () => {
   // Este componente definirá la navegación de tipo Stack para las rutas
   // dentro del grupo (stack).
+  
+  const navigation = useNavigation();
+ 
+  const toggleHeaderLeft = () => {
+    // Aquí puedes implementar la lógica para abrir o cerrar el Drawer
+    navigation.dispatch(DrawerActions.toggleDrawer);
+  }
+
   return (
-    <Stack screenOptions={{}}>
+    <Stack screenOptions={{
+      headerBackVisible: true,
+      headerLeft: ({canGoBack}) => (canGoBack ? null : <Ionicons name="menu" size={24} color="black" onPress={() => toggleHeaderLeft()} />), 
+      
+    }}>
       {/* Aquí puedes configurar las pantallas que pertenecerán a este Stack Navigator */}
       <Stack.Screen name="home/index" options={{ title: 'Home',headerTitleAlign: 'center', animation: 'ios_from_right'}} />
       <Stack.Screen name="profile/index" options={{ title: 'Profile',headerTitleAlign: 'center', animation: 'ios_from_right'}} />

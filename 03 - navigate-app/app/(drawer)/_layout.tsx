@@ -13,16 +13,33 @@ export default function Layout() {
   
 
   return (
-    <GestureHandlerRootView style={{flex:1}}>
       <Drawer
         drawerContent={CustomDrawer}
          screenOptions={{
+          
           drawerStyle:{
             width:width/2,
             backgroundColor:'#fff',
           },
+          headerTitleStyle: {
+            marginLeft: 110,
+          },
          }}
       >
+        <Drawer.Screen
+          
+          name="(tabs)" // This is the name of the page and must match the url from root
+          options={{
+            headerShown: false,
+            drawerLabel: 'Tabs',
+            title: 'Tabs',
+            drawerIcon: ({ focused, color, size }) => (
+              <Ionicons name={focused ? 'apps' : 'apps-outline'} color={color} size={size} />
+            ),
+          
+            
+          }}
+        />
         <Drawer.Screen
           
           name="user/index" // This is the name of the page and must match the url from root
@@ -46,6 +63,5 @@ export default function Layout() {
           }}
         />
       </Drawer>
-    </GestureHandlerRootView>
   );
 }
